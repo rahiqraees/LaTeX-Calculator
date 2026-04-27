@@ -14,4 +14,9 @@ def evaluate(expr: str) -> float:
     except LaTeXParsingError as exc:
         raise ValueError(f"could not parse LaTeX expression {expr!r}: {exc}") from exc
     substituted = parsed.subs(CONSTANTS)
-    return float(sympy.N(substituted.doit()))
+    try:
+        return float(sympy.N(substituted.doit()))
+    except TypeError as exc:
+        raise ValueError(
+            f"could not evaluate LaTeX expression {expr!r} to a number: {exc}"
+        ) from exc

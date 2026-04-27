@@ -20,3 +20,10 @@ def test_invalid_latex_raises_value_error_with_expression_in_message():
     with pytest.raises(ValueError) as exc_info:
         evaluate(bad)
     assert bad in str(exc_info.value)
+
+
+def test_unbound_symbol_raises_value_error_with_expression_in_message():
+    bad = "x + 1"
+    with pytest.raises(ValueError) as exc_info:
+        evaluate(bad)
+    assert bad in str(exc_info.value)
