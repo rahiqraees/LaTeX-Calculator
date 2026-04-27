@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "latexcalc"
+version = "0.1.0"
+description = "Evaluate LaTeX math expressions from the command line."
+requires-python = ">=3.12"
+dependencies = [
+    "click",
+    "sympy",
+    "antlr4-python3-runtime==4.11",
+]
+
+[project.scripts]
+latexcalc = "latexcalc.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
